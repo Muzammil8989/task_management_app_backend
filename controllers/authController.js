@@ -45,13 +45,13 @@ const login = async (req, res, next) => {
       expiresIn: "15m",
     });
 
-    res.cookie("access_token", token, {
+    res.cookie("access_token", accessToken, {
       httpOnly: true, // Secure cookie, cannot be accessed by JavaScript
       secure: process.env.NODE_ENV === "production", // Ensure Secure cookies are only used in production (on HTTPS)
-      sameSite: "None", // Allow cross-origin requests (necessary for SPAs with authentication)
+      sameSite: "None",
       maxAge: 30 * 60 * 1000,
       path: "/",
-      domain: ".netlify.app", // Wildcard domain for Netlify deployments
+      domain: ".netlify.app",
     });
 
     res.json({
