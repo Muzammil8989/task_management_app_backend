@@ -51,7 +51,7 @@ const login = async (req, res, next) => {
       sameSite: "None",
       maxAge: 30 * 60 * 1000,
       path: "/",
-      domain: ".netlify.app",
+      domain: process.env.CLIENT_URL,
     });
 
     res.json({
