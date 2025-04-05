@@ -48,7 +48,7 @@ const login = async (req, res, next) => {
     res.cookie("access_token", accessToken, {
       httpOnly: true, // Secure cookie, cannot be accessed by JavaScript
       secure: process.env.NODE_ENV === "production", // Ensure Secure cookies are only used in production (on HTTPS)
-      sameSite: "None",
+      sameSite: "strict",
       maxAge: 30 * 60 * 1000,
       path: "/",
     });
