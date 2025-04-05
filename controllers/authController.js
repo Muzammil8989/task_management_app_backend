@@ -65,9 +65,14 @@ const login = async (req, res, next) => {
     next(error);
   }
 };
-
 const logout = (req, res) => {
-  res.clearCookie("access_token");
+  // Ensure the cookie name and options match the one used when setting the cookie
+  res.clearCookie("access_token", {
+    httpOnly: true, // Cookie is accessible only by the web server
+    secure: process.env.NODE_ENV === "production", // Set to true for https
+    sameSite: "None", // Adjust based on your requirements
+    path: "/", // Ensure the path matches the path where the cookie was set
+  });
   res.json({ message: "Logged out successfully" });
 };
 
