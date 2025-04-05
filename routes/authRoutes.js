@@ -1,10 +1,17 @@
+// In your authRoutes.js (or similar)
 const express = require("express");
 const router = express.Router();
-const authController = require("../controllers/authController");
-const verifyJWT = require("../middlewares/verifyJWT");
+const {
+  register,
+  login,
+  logout,
+  getProfile,
+} = require("../controllers/authController");
+const authMiddleware = require("../middlewares/verifyJWT");
 
-router.post("/register", authController.register);
-router.post("/login", authController.login);
-router.post("/logout", verifyJWT, authController.logout);
+router.post("/register", register);
+router.post("/login", login);
+router.post("/logout", logout);
+router.get("/profile", authMiddleware, getProfile);
 
 module.exports = router;

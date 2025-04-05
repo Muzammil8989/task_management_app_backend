@@ -54,9 +54,12 @@ const login = async (req, res, next) => {
     });
 
     res.json({
-      _id: user._id,
-      username: user.username,
-      email: user.email,
+      message: "Logged in successfully",
+      user: {
+        _id: user._id,
+        username: user.username,
+        email: user.email,
+      },
     });
   } catch (error) {
     next(error);
@@ -68,4 +71,21 @@ const logout = (req, res) => {
   res.json({ message: "Logged out successfully" });
 };
 
-module.exports = { register, login, logout };
+const getProfile = async (req, res, next) => {
+  try {
+    const userId = req.user.userId;
+    console.log(userId);
+
+    const user = await User.findById(userId).select("-password");
+
+    if (!user) {
+      return res.status(404).json({ message: "User not found" });
+    }
+
+    res.json({ user });
+  } catch (error) {
+    next(error);
+  }
+};
+
+module.exports = { register, login, logout, getProfile };
