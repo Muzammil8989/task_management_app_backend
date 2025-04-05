@@ -26,6 +26,8 @@ app.use(cookieParser());
 // API Routes
 app.use("/api/v1/auth", v1AuthRoutes);
 
+app.get("/", (req, res) => res.send("Hello World!"));
+
 // Error handling
 app.use(errorHandler);
 

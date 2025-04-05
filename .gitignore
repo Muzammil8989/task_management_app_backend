@@ -36,4 +36,5 @@ test-output/
 # Optional: if using build tools
 dist/
 build/
+
 .qodo
