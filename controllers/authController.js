@@ -66,7 +66,6 @@ const login = async (req, res, next) => {
   }
 };
 const logout = (req, res) => {
-  // Ensure the cookie name and options match the one used when setting the cookie
   res.clearCookie("access_token", {
     httpOnly: true, // Cookie is accessible only by the web server
     secure: process.env.NODE_ENV === "production", // Set to true for https
@@ -79,7 +78,6 @@ const logout = (req, res) => {
 const getProfile = async (req, res, next) => {
   try {
     const userId = req.user.userId;
-    console.log(userId);
 
     const user = await User.findById(userId).select("-password");
 
