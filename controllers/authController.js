@@ -46,9 +46,9 @@ const login = async (req, res, next) => {
     });
 
     res.cookie("access_token", accessToken, {
-      httpOnly: true, // Secure cookie, cannot be accessed by JavaScript
-      secure: process.env.NODE_ENV === "production", // Ensure Secure cookies are only used in production (on HTTPS)
-      sameSite: "None",
+      httpOnly: true,
+      secure: process.env.NODE_ENV === "production", // Secure in production only
+      sameSite: process.env.NODE_ENV === "production" ? "None" : "Lax", // Lax in development
       maxAge: 24 * 60 * 60 * 1000,
       path: "/",
     });
@@ -70,7 +70,7 @@ const logout = (req, res) => {
   res.clearCookie("access_token", {
     httpOnly: true, // Cookie is accessible only by the web server
     secure: process.env.NODE_ENV === "production", // Set to true for https
-    sameSite: "None", // Adjust based on your requirements
+    sameSite: process.env.NODE_ENV === "production" ? "None" : "Lax",
     path: "/", // Ensure the path matches the path where the cookie was set
   });
   res.json({ message: "Logged out successfully" });
