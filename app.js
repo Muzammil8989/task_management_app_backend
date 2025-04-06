@@ -6,6 +6,7 @@ const connectDB = require("./config/db");
 const { PORT } = require("./config/env");
 const errorHandler = require("./middlewares/errorHandler");
 const v1AuthRoutes = require("./routes/authRoutes");
+const v1taskRoutes = require("./routes/taskRoutes");
 
 const app = express();
 
@@ -26,6 +27,7 @@ app.use(cookieParser());
 
 // API Routes
 app.use("/api/v1/auth", v1AuthRoutes);
+app.use("/api/v1/tasks", v1taskRoutes);
 
 app.get("/", (req, res) => res.send("Hello World!"));
 
