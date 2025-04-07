@@ -42,7 +42,7 @@ POST /api/v1/auth/login: Log in and receive a JWT token.
 
 POST /api/v1/auth/logout: Logout to delete receive JWT token.
 
-GET /api/v1/auth/profile: Get profile according who have login (authentication required).
+GET /api/v1/auth/profile: Get profile according to who have login (authentication required).
 
 GET /api/v1/tasks/get-tasks: Get all tasks (authentication required).
 
