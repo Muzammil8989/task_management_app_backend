@@ -36,17 +36,21 @@ npm start
 
 ### 3. API endpoints
 
-POST /api/auth/register: Register a new user.
+POST /api/v1/auth/register: Register a new user.
 
-POST /api/auth/login: Log in and receive a JWT token.
+POST /api/v1/auth/login: Log in and receive a JWT token.
 
-GET /api/tasks: Get all tasks (authentication required).
+POST /api/v1/auth/logout: Logout to delete receive JWT token.
 
-POST /api/tasks: Create a new task (authentication required).
+GET /api/v1/auth/profile: Get profile according who have login (authentication required).
 
-PUT /api/tasks/:id: Update an existing task (authentication required).
+GET /api/v1/tasks/get-tasks: Get all tasks (authentication required).
 
-DELETE /api/tasks/:id: Delete a task (authentication required).
+POST /api/v1/tasks/create-tasks: Create a new task (authentication required).
+
+PUT /api/v1/tasks/update-tasks/:id: Update an existing task (authentication required).
+
+DELETE /api/v1/tasks/delete-tasks/:id: Delete a task (authentication required).
 
 ### 4. Middleware
 verifyJWT: Verifies JWT token to ensure the user is authenticated.
