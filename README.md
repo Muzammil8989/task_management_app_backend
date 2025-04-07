@@ -20,7 +20,10 @@ git clone https://github.com/Muzammil8989/task_management_app_backend.git
 cd task_management_app_backend
 npm install
 
+```
+
 ### 2. Environment variable
+
 NODE_ENV=development
 CLIENT_URL=<your_frontend_url>
 MONGO_URI=<your_mongo_database_connection_string>
@@ -30,6 +33,7 @@ PORT=5000
 npm start
 
 ### 3. API endpoints
+
 POST /api/auth/register: Register a new user.
 
 POST /api/auth/login: Log in and receive a JWT token.
@@ -47,7 +51,7 @@ verifyJWT: Verifies JWT token to ensure the user is authenticated.
 
 errorHandler: Handles errors and sends standardized error responses.
 
-Deployment
+### 5. Deployment
 You can deploy the backend app on Vercel or any other platform of your choice. Make sure to set the environment variables (MONGO_URI, JWT_SECRET, CLIENT_URL) in the dashboard.
 
 
