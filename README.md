@@ -29,8 +29,10 @@ npm install
 - MONGO_URI=<your_mongo_database_connection_string>
 - JWT_SECRET=<your_jwt_secret_key>
 - PORT=5000
-
+  
+```bash
 npm start
+```
 
 ### 3. API endpoints
 
