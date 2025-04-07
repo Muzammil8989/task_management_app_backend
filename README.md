@@ -24,11 +24,11 @@ npm install
 
 ### 2. Environment variable
 
-NODE_ENV=development
-CLIENT_URL=<your_frontend_url>
-MONGO_URI=<your_mongo_database_connection_string>
-JWT_SECRET=<your_jwt_secret_key>
-PORT=5000
+- NODE_ENV=development
+- CLIENT_URL=<your_frontend_url>
+- MONGO_URI=<your_mongo_database_connection_string>
+- JWT_SECRET=<your_jwt_secret_key>
+- PORT=5000
 
 npm start
 
