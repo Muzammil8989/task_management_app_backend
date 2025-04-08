@@ -2,11 +2,12 @@ const User = require("../models/User");
 const jwt = require("jsonwebtoken");
 const { JWT_SECRET } = require("../config/env");
 
+// Register
 const register = async (req, res, next) => {
   try {
     const { username, email, password } = req.body;
 
-    // Check if the user already exists by email or username
+    
     const existingUser = await User.findOne({ $or: [{ email }, { username }] });
     if (existingUser) {
       return res.status(409).json({
@@ -14,11 +15,11 @@ const register = async (req, res, next) => {
       });
     }
 
-    // Create and save the new user
+    
     const user = new User({ username, email, password });
     await user.save();
 
-    // Respond with success message and user data
+ 
     res.status(201).json({
       message: "Registration successful. Please log in to continue.",
       user: {
@@ -31,6 +32,8 @@ const register = async (req, res, next) => {
     next(error);
   }
 };
+
+// Login
 
 const login = async (req, res, next) => {
   try {
@@ -47,8 +50,8 @@ const login = async (req, res, next) => {
 
     res.cookie("access_token", accessToken, {
       httpOnly: true,
-      secure: process.env.NODE_ENV === "production", // Secure in production only
-      sameSite: process.env.NODE_ENV === "production" ? "None" : "Lax", // Lax in development
+      secure: process.env.NODE_ENV === "production", 
+      sameSite: process.env.NODE_ENV === "production" ? "None" : "Lax",
       maxAge: 24 * 60 * 60 * 1000,
       path: "/",
     });
@@ -65,15 +68,19 @@ const login = async (req, res, next) => {
     next(error);
   }
 };
+
+// Logout
 const logout = (req, res) => {
   res.clearCookie("access_token", {
-    httpOnly: true, // Cookie is accessible only by the web server
-    secure: process.env.NODE_ENV === "production", // Set to true for https
+    httpOnly: true, 
+    secure: process.env.NODE_ENV === "production",
     sameSite: process.env.NODE_ENV === "production" ? "None" : "Lax",
-    path: "/", // Ensure the path matches the path where the cookie was set
+    path: "/", 
   });
   res.json({ message: "Logged out successfully" });
 };
+
+// Get Profile
 
 const getProfile = async (req, res, next) => {
   try {
